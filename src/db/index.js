@@ -1,4 +1,9 @@
 const { createTables, dbHealthCheck } = require("./table");
-const { addContent } = require("./content");
+const { addContent, getContentUsingReferenceId } = require("./content");
 
-module.exports = { createTables, addContent, dbHealthCheck };
+module.exports = {
+  createTables,
+  addContent,
+  dbHealthCheck,
+  getContentUsingReferenceId,
+};
