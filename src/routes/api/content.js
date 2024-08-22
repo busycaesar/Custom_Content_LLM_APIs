@@ -15,7 +15,7 @@ router.post("/", async (req, res) => {
 
   // Make sure that the content is valid.
   if (!content)
-    return res.send(401).json(response(false, `Content not provided.`));
+    return res.send(400).json(response(false, `Content not provided.`));
 
   // Generate the reference id for the content.
   const referenceId = randomUUID();
@@ -63,7 +63,7 @@ router.get("/:referenceId", async (req, res) => {
 
   // Make sure the reference id is received.
   if (!referenceId)
-    return res.status(401).json(response(false, "Reference id not provided."));
+    return res.status(400).json(response(false, "Reference id not provided."));
 
   try {
     // Get the content using the reference id.
@@ -88,7 +88,7 @@ router.put("/:referenceId", async (req, res) => {
   // Make sure all the required data is valid.
   if (!referenceId || !content)
     return res
-      .status(401)
+      .status(400)
       .json(
         response(
           false,
@@ -117,7 +117,7 @@ router.delete("/:referenceId", async (req, res) => {
 
   // Make sure all the required data is valid.
   if (!referenceId)
-    return res.status(401).json(response(false, `Reference Id not received.`));
+    return res.status(400).json(response(false, `Reference Id not received.`));
 
   try {
     // Try to delete the content using the reference id.
