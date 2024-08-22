@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const response = require("../response");
 
-router.use("/", require("./content"));
+router.use("/content", require("./content"));
+router.use("/prompt", require("./prompt"));
 
 module.exports = router;
