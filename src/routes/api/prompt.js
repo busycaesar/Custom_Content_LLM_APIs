@@ -18,7 +18,7 @@ router.post("/:referenceId", async (req, res) => {
   // Make sure all the required data are valid.
   if (!referenceId || !prompt)
     return res
-      .status(401)
+      .status(400)
       .json(
         response(
           false,
@@ -50,7 +50,7 @@ router.post("/:referenceId", async (req, res) => {
 
     const { ok, message, body } = await llmResponse.json();
 
-    if (!ok) return res.status(401).json(response(false, message));
+    if (!ok) return res.status(400).json(response(false, message));
 
     // Return the response.
     res.status(200).json(response(true, "Response by the llm is send.", body));
