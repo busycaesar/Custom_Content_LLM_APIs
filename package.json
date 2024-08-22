@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
+    "db": "docker exec -it docker-db-1 bash -c \"psql -U llm_apis_user -d llm_apis_db\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
