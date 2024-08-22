@@ -1,5 +1,6 @@
 const app = require("./app");
 require("dotenv").config();
+const { createTables } = require("./db");
 
 const PORT = process.env.PORT;
 
@@ -8,6 +9,10 @@ if (!PORT) {
   process.exit(1);
 }
 
-app.listen(PORT, async () => {
-  console.log(`Server started on PORT: ${PORT}`);
-});
+createTables()
+  .then(() => {
+    app.listen(PORT, async () => {
+      console.log(`Server started on PORT: ${PORT}`);
+    });
+  })
+  .catch((error) => console.log(error));

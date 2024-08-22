@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const response = require("./response");
+const { dbHealthCheck } = require("../db");
 
 router.use("/api", require("./api"));
 
@@ -10,14 +11,22 @@ router.get("/", async (req, res) => {
   // Get the current version of the project.
   const { version } = require("../../package.json");
 
-  // Make sure that the response of health check route is not cached.
-  res.setHeader("Cache-Control", "no-cache");
+  try {
+    // Get the health check of the db.
+    const dbHealth = await dbHealthCheck();
 
-  res.status(200).json(
-    response(true, "Healthy", {
-      "Project Version": version,
-    })
-  );
+    // Make sure that the response of health check route is not cached.
+    res.setHeader("Cache-Control", "no-cache");
+
+    res.status(200).json(
+      response(true, "Healthy", {
+        "Project Version": version,
+        "Current Time": dbHealth,
+      })
+    );
+  } catch (error) {
+    res.status(500).json;
+  }
 });
 
 // 404 Routes.
