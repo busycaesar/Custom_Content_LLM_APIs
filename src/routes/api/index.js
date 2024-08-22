@@ -1,8 +1,6 @@
 const router = require("express").Router();
 const response = require("../response");
 
-router.get("/", async (req, res) => {
-  res.status(200).json(response(true, "Example Route"));
-});
+router.use("/", require("./content"));
 
 module.exports = router;
