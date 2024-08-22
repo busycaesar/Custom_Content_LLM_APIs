@@ -1,10 +1,7 @@
 const router = require("express").Router();
 const response = require("../response");
 const { addContent } = require("../../db");
-
-const generateUniqueId = () => {
-  return crypto.randomBytes(16).toString("hex");
-};
+const { randomUUID } = require("crypto");
 
 router.post("/", async (req, res) => {
   // Get the content from the body.
@@ -15,14 +12,16 @@ router.post("/", async (req, res) => {
     return res.send(401).json(response(false, `Content not provided.`));
 
   // Generate the reference id for the content.
-  const uniqueContentId = generateUniqueId();
+  const referenceId = randomUUID();
 
   try {
     // Store the content.
-    await addContent(content, uniqueContentId);
+    await addContent(content, referenceId);
 
     // Return the reference id.
-    res.status(201).json(response(true, `New content stored.`));
+    res
+      .status(201)
+      .json(response(true, `New content stored.`, { referenceId }));
   } catch (error) {
     res
       .status(500)
