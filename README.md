@@ -15,8 +15,8 @@ This project abstracts away the complexities of working with LangChain and langu
 ![Image Alt](https://skillicons.dev/icons?i=nodejs,express,postgres,docker)
 
 ## Features
-- Manage the content
-- Ask question based on the content using LLM
+- Store and manage content
+- Prompt LLM and get response based on the stored content
 
 ## [API Documentation](./api-documentation.md)
 
