@@ -18,9 +18,13 @@ This project abstracts away the complexities of working with LangChain and langu
 - Store and manage content
 - Prompt LLM and get response based on the stored content
 
-## [API Documentation](./api-documentation.md)
+## System Diagram
+
+![System Diagram](./system_diagram.png)
 
 ## [Project Documentation](./documentation.md)
+
+## [API Documentation](./api-documentation.md)
 
 ## Author
 [Dev Shah](https://github.com/busycaesar)
