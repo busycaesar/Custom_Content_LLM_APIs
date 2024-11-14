@@ -1,4 +1,4 @@
-# Content Driven LLM APIs
+# Content Driven LLM APIs (In Dev.)
 
 ## Description
 This project offers a set of developer-friendly APIs that enable users to interact with a Large Language Model (LLM) using their own content. Users can submit text, which the system stores. When a question is posed, the system retrieves the content and leverages the LLM to generate a response based on that information.
@@ -11,7 +11,7 @@ This project offers a set of developer-friendly APIs that enable users to intera
 ![System Diagram](./system_diagram.png)
 
 ## Tech Stack
-![Image Alt](https://skillicons.dev/icons?i=nodejs,express,postgres,docker)
+![Image Alt](https://skillicons.dev/icons?i=flask,docker)
 
 ## [API Documentation](./api-documentation.md)
 
