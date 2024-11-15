@@ -4,7 +4,6 @@ from .response import response
 # Import the apis blueprint.
 from .apis import apis
 
-
 # Initiate Blueprint with the name routes.
 routes = Blueprint("routes", __name__)
 
