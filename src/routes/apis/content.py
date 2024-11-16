@@ -5,7 +5,7 @@ from db import add_new_content
 content_apis = Blueprint("content_apis", __name__)
 
 @content_apis.route("/", methods=["POST"])
-def post_content():
+async def post_content():
     # All data from the request body.
     data = request.get_json()
 
@@ -17,10 +17,12 @@ def post_content():
         return jsonify(response(False,"Content not provided")), 400
 
     # Store the content in a Vector DB.
-    reference_id = add_new_content(content=content)
-
-    # Return the user unique id of the content.
-    return jsonify(response(True, "New content stored.", reference_id))
+    try:
+        await add_new_content(content=content)
+        
+        return jsonify(response(True, "New content stored.")), 201
+    except Exception as e:
+        return jsonify(response(False, f"Error: {str(e)}")), 500
 
 @content_apis.route("/", methods=["GET"])
 def get_content():
