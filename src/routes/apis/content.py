@@ -43,7 +43,7 @@ async def api_put_content():
     if not content:
         return jsonify(response(False,"Content not provided")), 400
 
-    # Store the content in a Vector DB.
+    # Update the content in a Vector DB.
     try:
         await put_content(content=content)
         
