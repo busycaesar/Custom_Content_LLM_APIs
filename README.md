@@ -15,10 +15,10 @@ Previously, the application was developed using JavaScript and stored data in Po
 
 ## Tech Stack
 
-Application: Flask, LangChain,
-Embedding and LLM: Gemini
-Vector DB: pgvector
-Deployment: Docker
+- Application: Flask, LangChain,
+- Embedding and LLM: Gemini
+- Vector DB: pgvector
+- Deployment: Docker
 
 ## Features
 
