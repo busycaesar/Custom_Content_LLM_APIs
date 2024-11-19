@@ -14,11 +14,10 @@ Previously, the application was developed using JavaScript and stored data in Po
 />](https://www.youtube.com/embed/R7Xiv3iG7Fg)
 
 ## Tech Stack
-
-Application: Flask, LangChain,
-Embedding and LLM: Gemini
-Vector DB: FAISS
-Deployment: Docker
+- **Application**: Flask, LangChain, 
+- **Embedding and LLM**: Gemini
+- **Vector DB**: FAISS
+- **Deployment**: Docker
 
 ## Features
 
