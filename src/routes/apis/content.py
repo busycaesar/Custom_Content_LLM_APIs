@@ -24,36 +24,36 @@ async def api_post_content():
     except Exception as e:
         return jsonify(response(False, f"Error: {str(e)}")), 500
 
-@content_apis.route("/", methods=["GET"])
-async def api_get_content():
+# @content_apis.route("/", methods=["GET"])
+# async def api_get_content():
 
-    content = await get_content()
+#     content = await get_content()
 
-    return jsonify(response(True, "Content is sent", content))
+#     return jsonify(response(True, "Content is sent", content))
 
-@content_apis.route("/", methods=["PUT"])
-async def api_put_content():
-    # All data from the request body.
-    data = request.get_json()
+# @content_apis.route("/", methods=["PUT"])
+# async def api_put_content():
+#     # All data from the request body.
+#     data = request.get_json()
 
-    # Get the value of content from the data.
-    content = data.get("content")
+#     # Get the value of content from the data.
+#     content = data.get("content")
 
-    # Make sure the content is not empty.
-    if not content:
-        return jsonify(response(False,"Content not provided")), 400
+#     # Make sure the content is not empty.
+#     if not content:
+#         return jsonify(response(False,"Content not provided")), 400
 
-    # Update the content in a Vector DB.
-    try:
-        await put_content(content=content)
+#     # Update the content in a Vector DB.
+#     try:
+#         await put_content(content=content)
         
-        return jsonify(response(True, "Content updated.")), 201
-    except Exception as e:
-        return jsonify(response(False, f"Error: {str(e)}")), 500
+#         return jsonify(response(True, "Content updated.")), 201
+#     except Exception as e:
+#         return jsonify(response(False, f"Error: {str(e)}")), 500
 
-@content_apis.route("/", methods=["DELETE"])
-async def api_delete_content():
+# @content_apis.route("/", methods=["DELETE"])
+# async def api_delete_content():
 
-    await delete_content()
+#     await delete_content()
 
-    return jsonify(response(True, "Content Deleted")), 201
+#     return jsonify(response(True, "Content Deleted")), 201
