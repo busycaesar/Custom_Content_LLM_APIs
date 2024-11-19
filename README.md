@@ -17,7 +17,7 @@ Previously, the application was developed using JavaScript and stored data in Po
 
 Application: Flask, LangChain,
 Embedding and LLM: Gemini
-Vector DB: FAISS
+Vector DB: pgvector
 Deployment: Docker
 
 ## Features
