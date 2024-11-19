@@ -1,9 +1,6 @@
 from langchain.prompts import PromptTemplate
 from langchain_google_genai import ChatGoogleGenerativeAI
-import os
-from dotenv import load_dotenv
-
-load_dotenv()
+from env_variable import gemini_api_keys
 
 def generate_response(prompt, relevant_chunk_of_data):
     # Create a prompt template
@@ -17,9 +14,6 @@ def generate_response(prompt, relevant_chunk_of_data):
         User's Question: {prompt}
         """
         )
-    
-    # Initiate an llm instance
-    gemini_api_keys = os.getenv("GEMINI_API_KEY")
 
     llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", google_api_key=gemini_api_keys)
 
