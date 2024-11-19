@@ -4,15 +4,13 @@ import os
 from dotenv import load_dotenv
 from langchain.schema import Document
 from langchain_community.vectorstores import FAISS
+from db.db import get_vector_store
 
 load_dotenv()
 
 gemini_api_keys = os.getenv("GEMINI_API_KEY")
-db = None
 
 async def add_new_content(content: str):
-    global db
-
     # Convert the text into Document type.
     content = Document(page_content=content)
     
@@ -22,10 +20,11 @@ async def add_new_content(content: str):
     # Using the text splitter, split the content into chunks by passing the converted content.
     documents = text_splitter.split_documents([content])
     
-    # Initiate an embedding model.
-    embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001", google_api_key=gemini_api_keys)
+    print(documents)
 
-    db = FAISS.from_documents(documents, embedding=embeddings)
+    vector_store = get_vector_store()
+
+    vector_store.add_documents(documents)
 
 async def get_content():
     
@@ -40,13 +39,12 @@ async def delete_content():
     return 000;
 
 async def get_relevant_chunk(prompt):
-    global db
-    
-    if db is None: 
-        print("No relevant content")
-        return "No relevant content"
+    vector_store = get_vector_store()
 
-    docs = db.similarity_search(prompt, k=4)
+    docs = vector_store.similarity_search(prompt, k=4)
+
     relevant_chunk = " ".join([d.page_content for d in docs])
+
+    print(relevant_chunk)
 
     return relevant_chunk
