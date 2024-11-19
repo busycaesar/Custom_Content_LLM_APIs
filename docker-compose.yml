@@ -1,13 +1,23 @@
 services:
+  # For storing the content and the reference id.
   db:
-    image: pgvector/pgvector:pg16
+    image: postgres:13
     restart: always
     env_file:
-      - .env
+      - postgres.env
     ports:
       - "5432:5432"
     volumes:
-      - pg_data:/var/lib/postgresql/data
+      - llm_apis_postgres:/var/lib/postgresql/data
+
+  # To interact with the llm.
+  llm_middleware:
+    image: busycaesar/llm_middleware_api
+    restart: always
+    env_file:
+      - llm_middleware.env
+    ports:
+      - "7000:7000"
 
 volumes:
-  pg_data:
+  llm_apis_postgres:
