@@ -17,10 +17,10 @@ To use the image, please refer to [Project Documentation](./documentation.md) to
 
 ## Tech Stack
 
-**Application**: Flask, LangChain,
-**Embedding and LLM**: Gemini
-**Vector DB**: pgvector
-**Deployment**: Docker
+- **Application**: Flask, LangChain,
+- **Embedding and LLM**: Gemini
+- **Vector DB**: pgvector
+- **Deployment**: Docker
 
 ## Features
 
