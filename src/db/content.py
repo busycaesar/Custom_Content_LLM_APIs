@@ -23,6 +23,8 @@ async def add_new_content(content: str):
 
     vector_store = get_vector_store()
 
+    if not vector_store: return
+
     vector_store.add_documents(documents)
 
 async def get_content():
@@ -39,6 +41,8 @@ async def delete_content():
 
 async def get_relevant_chunk(prompt):
     vector_store = get_vector_store()
+
+    if not vector_store: return
 
     docs = vector_store.similarity_search(prompt, k=4)
 

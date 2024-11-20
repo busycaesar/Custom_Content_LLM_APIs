@@ -1,8 +1,5 @@
 from flask import Flask, jsonify
-
-# For working with environment variables.
-import os
-from dotenv import load_dotenv
+from env_variable import port
 
 # Import all the routes.
 from routes import routes
@@ -14,12 +11,8 @@ app = Flask(__name__)
 # API calls for the assigned url prefix will be redirected to the routes.
 app.register_blueprint(routes, url_prefix="/")
 
-# Load variables from all .env files.
-load_dotenv()
-
 if __name__ == "__main__":
 
-    # Get the PORT number from the environment variable.
-    PORT = os.getenv("PORT")
-    # Run the application.
-    app.run(debug=True, port=PORT)
+    if port:
+        # Run the application.
+        app.run(host="0.0.0.0",debug=True, port=port)
