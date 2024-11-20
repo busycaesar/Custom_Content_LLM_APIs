@@ -14,6 +14,8 @@ def generate_response(prompt, relevant_chunk_of_data):
         User's Question: {prompt}
         """
         )
+    
+    if not gemini_api_keys: return
 
     llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", google_api_key=gemini_api_keys)
 
