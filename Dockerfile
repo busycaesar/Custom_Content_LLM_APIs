@@ -1,28 +1,21 @@
-FROM node:lts AS dependencies
+# Stage 1: Install required dependencies.
+FROM python:3.9-slim AS dependencies
 
-WORKDIR /application
+WORKDIR /app
 
-COPY ../package*.json ./
+COPY req.txt /app
 
-RUN npm install --only=production
+RUN pip install -r req.txt
 
-FROM node:lts AS development
+# Stage 2: Move the src directory and start the server.
+FROM python:3.9-slim
 
-WORKDIR /application
+WORKDIR /app
 
-COPY --from=dependencies /application /application
+COPY --from=dependencies /usr/local/lib/python3.9/site-packages /usr/local/lib/python3.9/site-packages
 
-COPY ../src ./src
+COPY src/ /app/
 
-FROM node:lts
+EXPOSE 8080
 
-WORKDIR /server
-
-COPY --from=development /application /server
-
-CMD ["node", "src/server.js"]
-
-EXPOSE ${PORT}
-
-HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
- CMD curl --fail localhost:${PORT} || exit 1
+CMD python app.py
