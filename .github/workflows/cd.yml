@@ -5,7 +5,7 @@ name: cd
 on:
   push:
     branches:
-      - python
+      - Master
 
 # This job is expected to run whenever the above condition is fulfilled!
 jobs:
