@@ -21,7 +21,7 @@ async def add_new_content(content, gemini_api_keys):
     
     print(documents)
 
-    vector_store = get_vector_store(gemini_api_keys=gemini_api_keys)
+    vector_store = get_vector_store(gemini_api_keys)
 
     if not vector_store: return
 
