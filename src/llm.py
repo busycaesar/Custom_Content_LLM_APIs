@@ -2,7 +2,7 @@ from langchain.prompts import PromptTemplate
 from langchain_google_genai import ChatGoogleGenerativeAI
 from env_variable import gemini_api_keys
 
-def generate_response(prompt, relevant_chunk_of_data):
+def generate_response(prompt, relevant_chunk_of_data, gemini_api_keys_by_api_call):
     # Create a prompt template
     prompt_template = PromptTemplate(
         input_variables=["prompt", "relevant_chunk_of_data"], 
@@ -15,9 +15,11 @@ def generate_response(prompt, relevant_chunk_of_data):
         """
         )
     
-    if not gemini_api_keys: return
+    model_api_keys = gemini_api_keys_by_api_call if not gemini_api_keys else gemini_api_keys
 
-    llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", google_api_key=gemini_api_keys)
+    if not model_api_keys: return
+
+    llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", google_api_key=model_api_keys)
 
     # Chain the template and instance
     chain = prompt_template | llm

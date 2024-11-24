@@ -9,7 +9,7 @@ load_dotenv()
 
 gemini_api_keys = os.getenv("GEMINI_API_KEY")
 
-async def add_new_content(content: str):
+async def add_new_content(content, gemini_api_keys):
     # Convert the text into Document type.
     content = Document(page_content=content)
     
@@ -21,7 +21,7 @@ async def add_new_content(content: str):
     
     print(documents)
 
-    vector_store = get_vector_store()
+    vector_store = get_vector_store(gemini_api_keys=gemini_api_keys)
 
     if not vector_store: return
 
@@ -39,8 +39,8 @@ async def put_content(content):
 async def delete_content():
     return 000;
 
-async def get_relevant_chunk(prompt):
-    vector_store = get_vector_store()
+async def get_relevant_chunk(prompt, gemini_api_keys):
+    vector_store = get_vector_store(gemini_api_keys)
 
     if not vector_store: return
 
