@@ -16,6 +16,6 @@ COPY --from=dependencies /usr/local/lib/python3.9/site-packages /usr/local/lib/p
 
 COPY src/ /app/
 
-EXPOSE 8080
+EXPOSE ${PORT}
 
 CMD python app.py

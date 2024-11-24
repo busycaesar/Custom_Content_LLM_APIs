@@ -6,7 +6,8 @@ def get_vector_store(gemini_api_keys_by_api_call):
 
     model_api_keys = gemini_api_keys_by_api_call if not gemini_api_keys else gemini_api_keys
 
-    if not model_api_keys: return
+    if not model_api_keys or not postgres_connection_string or not postgres_collection: 
+        return
     
     embedding_model = GoogleGenerativeAIEmbeddings(
     model="models/embedding-001", 
