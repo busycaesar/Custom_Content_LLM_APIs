@@ -1,12 +1,14 @@
-# Project Documentation (In Dev.)
+# Project Documentation
 
-To use API services provided by the project, just need to pull a few images from DockerHub, set up the `docker-compose.yml` file, pass required environment variables and run the containers. Following is the setup architecture. It representations how the project setup looks like.
+To use the API services provided by the project, you need to pull a few images from DockerHub, set up the `docker-compose.yml` file, pass the required environment variables, and run the containers. Below is the architecture diagram that represents the project setup.
 
 ![Project Setup](./project_setup.png)
 
-Following are the step by step instructions for setting up the project.
+## Step-by-Step Instructions for Setting Up the Project
 
-1. Create a `docker-compose.yml` file in a new folder. List the required images and add the required parameters as shown below
+1. Create a `docker-compose.yml` File
+
+Create a `docker-compose.yml` file in a new folder. List the required images and add the necessary parameters as shown below:
 
 ```yml
 services:
@@ -41,7 +43,9 @@ volumes:
   llm_project_demo:
 ```
 
-2. Create `.env` file to list all the required environment variables.
+2. Create `.env` File
+
+Create a `.env` file to list all the required environment variables.
 
 ```.env
 PORT=8080
@@ -57,10 +61,14 @@ POSTGRES_COLLECTION=llm_vectordb_documents
 GEMINI_API_KEY= # Paste your Gemini API Key here.
 ```
 
-3. Once both the files are setup and `Docker Desktop` is started, you can run the following command to run all the containers.
+3. Run the Containers
+
+Once both the files are set up and `Docker Desktop` is started, run the following command to run all the containers:
 
 ```bash
 docker compose up --build
 ```
 
-4. If this does not thorw any error, you should be able to access the APIs provided by the application on `localhost:8080`. You can run the health check to make sure that the application is healthy. For using the APIs check out the [API Documentation](./api-documentation.md).
+4. Check the Setup
+
+If no errors occur, you should be able to access the APIs provided by the application at localhost:8080. You can run a health check to ensure the application is working correctly. For API usage, refer to the [API Documentation](./api-documentation.md).
